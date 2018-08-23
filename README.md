@@ -1,2 +1,2 @@
 # gs-bootcamp
-Host material related to Geophysical Science Bootcamp
+To host material related to Geophysical Science Bootcamp
