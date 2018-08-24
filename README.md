@@ -1,7 +1,8 @@
-# gs-bootcamp
-To host material related to Geophysical Science Bootcamp
 
-Preliminary schedule:
+## Date: Sep 4 - Sep 14
+## Tentative Location: Searle 240A
+
+## Tentative schedule:
 * Day 1. Basic concepts
 * Day 2. Python part 1
 * Day 3. Python part 2
