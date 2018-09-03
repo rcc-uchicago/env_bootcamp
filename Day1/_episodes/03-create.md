@@ -1,6 +1,6 @@
 ---
 title: "Working With Files and Directories"
-teaching: 15
+teaching: 0
 exercises: 0
 questions:
 - "How can I create, copy, and delete files and directories?"
@@ -8,17 +8,17 @@ questions:
 objectives:
 - "Create a directory hierarchy that matches a given diagram."
 - "Create files in that hierarchy using an editor or by copying and renaming existing files."
-- "Display the contents of a directory using the command line."
-- "Delete specified files and/or directories."
+- "Delete, copy and move specified files and/or directories."
 keypoints:
 - "`cp old new` copies a file."
 - "`mkdir path` creates a new directory."
 - "`mv old new` moves (renames) a file or directory."
 - "`rm path` removes (deletes) a file."
-- "`rmdir path` removes (deletes) an empty directory."
+- "`*` matches zero or more characters in a filename, so `*.txt` matches all files ending in `.txt`."
+- "`?` matches any single character in a filename, so `?.txt` matches `a.txt` but not `any.txt`."
 - "Use of the Control key may be described in many ways, including `Ctrl-X`, `Control-X`, and `^X`."
 - "The shell does not have a trash bin: once something is deleted, it's really gone."
-- "Nano is a very simple text editor: please use something else for real work."
+- "Depending on the type of work you do, you may need a more powerful text editor than Nano."
 ---
 
 We now know how to explore files and directories,
@@ -29,7 +29,7 @@ and use `ls -F` to see what it contains:
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 /Users/nelle/Desktop/data-shell
@@ -39,12 +39,10 @@ $ pwd
 ~~~
 $ ls -F
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
-creatures/  molecules/           pizza.cfg
-data/       north-pacific-gyre/  solar.pdf
-Desktop/    notes.txt            writing/
+creatures/  data/  molecules/  north-pacific-gyre/  notes.txt  pizza.cfg  solar.pdf  writing/
 ~~~
 {: .output}
 
@@ -54,7 +52,7 @@ Let's create a new directory called `thesis` using the command `mkdir thesis`
 ~~~
 $ mkdir thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 As you might guess from its name,
 `mkdir` means "make directory".
@@ -65,13 +63,10 @@ the new directory is created in the current working directory:
 ~~~
 $ ls -F
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
-creatures/  north-pacific-gyre/  thesis/
-data/       notes.txt            writing/
-Desktop/    pizza.cfg
-molecules/  solar.pdf
+creatures/  data/  molecules/  north-pacific-gyre/  notes.txt  pizza.cfg  solar.pdf  thesis/  writing/
 ~~~
 {: .output}
 
@@ -85,26 +80,27 @@ molecules/  solar.pdf
 
 > ## Good names for files and directories
 >
-> Complicated names of files and directories can make your life very painful
+> Complicated names of files and directories can make your life painful
 > when working on the command line. Here we provide a few useful
-> tips for the names of your files from now on.
+> tips for the names of your files.
 >
 > 1. Don't use whitespaces.
 >
->    White spaces can make a name more meaningful
+>    Whitespaces can make a name more meaningful
 >    but since whitespace is used to break arguments on the command line
->    is better to avoid them on name of files and directories.
+>    it is better to avoid them in names of files and directories.
 >    You can use `-` or `_` instead of whitespace.
 >
 > 2. Don't begin the name with `-` (dash).
 >
 >    Commands treat names starting with `-` as options.
 >
-> 3. Stick with letters, numbers, `.` (period), `-` (dash) and `_` (underscore).
+> 3. Stick with letters, numbers, `.` (period or 'full stop'), `-` (dash) and `_` (underscore).
 >
->    Many other characters have a special meaning on the command line
->    that we will learn during this lesson. Some will only make your command not work,
->    but some of them may even cause you to lose some data!
+>    Many other characters have special meanings on the command line.
+>    We will learn about some of these during this lesson.
+>    There are special characters that can cause your command to not work as
+>    expected and can even result in data loss.
 >
 > If you need to refer to names of files or directories that have whitespace
 > or another non-alphanumeric character, you should surround the name in quotes (`""`).
@@ -115,27 +111,28 @@ Since we've just created the `thesis` directory, there's nothing in it yet:
 ~~~
 $ ls -F thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 Let's change our working directory to `thesis` using `cd`,
-then run a text editor called Nano to create a file called `draft.txt`:
+then run a text editor called `Nano` to create a file called `draft.txt`:
 
 ~~~
 $ cd thesis
 $ nano draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Which Editor?
 >
 > When we say, "`nano` is a text editor," we really do mean "text": it can
 > only work with plain character data, not tables, images, or any other
-> human-friendly media. We use it in examples because almost anyone can
-> drive it anywhere without training, but please use something more
-> powerful for real work. On Unix systems (such as Linux and Mac OS X),
+> human-friendly media. We use it in examples because it is one of the 
+> least complex text editors. However, because of this trait, it may 
+> not be powerful enough or flexible enough for the work you need to do
+> after this workshop. On Unix systems (such as Linux and Mac OS X),
 > many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
-> [Vim](http://www.vim.org/) (both of which are completely unintuitive,
-> even by Unix standards), or a graphical editor such as
+> [Vim](http://www.vim.org/) (both of which require more time to learn), 
+> or a graphical editor such as
 > [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
 > use [Notepad++](http://notepad-plus-plus.org/).  Windows also has a built-in
 > editor called `notepad` that can be run from the command line in the same
@@ -172,6 +169,7 @@ return to the shell.
 > * `Ctrl-X`
 > * `Ctrl+X`
 > * `^X`
+> * `C-x`
 >
 > In nano, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
 > This means that you can use `Control-G` to get help and `Control-O` to save your
@@ -184,19 +182,60 @@ but `ls` now shows that we have created a file called `draft.txt`:
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 draft.txt
 ~~~
 {: .output}
 
-Let's tidy up by running `rm draft.txt`:
+> ## Creating Files a Different Way
+>
+> We have seen how to create text files using the `nano` editor.
+> Now, try the following command in your home directory:
+>
+> ~~~
+> $ cd                  # go to your home directory
+> $ touch my_file.txt
+> ~~~
+> {: .language-bash}
+>
+> 1.  What did the touch command do?
+>     When you look at your home directory using the GUI file explorer,
+>     does the file show up?
+>
+> 2.  Use `ls -l` to inspect the files.  How large is `my_file.txt`?
+>
+> 3.  When might you want to create a file this way?
+>
+> > ## Solution
+> > 1.  The touch command generates a new file called 'my_file.txt' in
+> >     your home directory.  If you are in your home directory, you
+> >     can observe this newly generated file by typing 'ls' at the 
+> >     command line prompt.  'my_file.txt' can also be viewed in your
+> >     GUI file explorer.
+> >
+> > 2.  When you inspect the file with 'ls -l', note that the size of
+> >     'my_file.txt' is 0kb.  In other words, it contains no data.
+> >     If you open 'my_file.txt' using your text editor it is blank.
+> >
+> > 3.  Some programs do not generate output files themselves, but
+> >     instead require that empty files have already been generated.
+> >     When the program is run, it searches for an existing file to
+> >     populate with its output.  The touch command allows you to
+> >     efficiently generate a blank text file to be used by such
+> >     programs.
+> {: .solution}
+{: .challenge}
+
+Returning to the `data-shell` directory,
+let's tidy up the `thesis` directory by removing the draft we created:
 
 ~~~
+$ cd thesis
 $ rm draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 This command removes files (`rm` is short for "remove").
 If we run `ls` again,
@@ -206,7 +245,7 @@ which tells us that our file is gone:
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Deleting Is Forever
 >
@@ -225,7 +264,7 @@ and then move up one directory to `/Users/nelle/Desktop/data-shell` using `cd ..
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 /Users/nelle/Desktop/data-shell/thesis
@@ -236,7 +275,7 @@ $ pwd
 $ nano draft.txt
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 draft.txt
@@ -246,7 +285,7 @@ draft.txt
 ~~~
 $ cd ..
 ~~~
-{: .bash}
+{: .language-bash}
 
 If we try to remove the entire `thesis` directory using `rm thesis`,
 we get an error message:
@@ -254,7 +293,7 @@ we get an error message:
 ~~~
 $ rm thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 rm: cannot remove `thesis': Is a directory
@@ -269,11 +308,27 @@ We can do this with the [recursive](https://en.wikipedia.org/wiki/Recursion) opt
 ~~~
 $ rm -r thesis
 ~~~
-{: .bash}
+{: .language-bash}
+
+> ## Using `rm` Safely
+>
+> What happens when we type `rm -i thesis/quotations.txt`?
+> Why would we want this protection when using `rm`?
+>
+> > ## Solution
+> > ```
+> > $ rm: remove regular file 'thesis/quotations.txt'?
+> > ```
+> > {: .language-bash} 
+> > The -i option will prompt before every removal. 
+> > The Unix shell doesn't have a trash bin, so all the files removed will disappear forever. 
+> > By using the -i flag, we have the chance to check that we are deleting only the files that we want to remove.
+> {: .solution}
+{: .challenge}
 
 > ## With Great Power Comes Great Responsibility
 >
-> Removing the files in a directory recursively can be very dangerous
+> Removing the files in a directory recursively can be a very dangerous
 > operation. If we're concerned about what we might be deleting we can
 > add the "interactive" flag `-i` to `rm` which will ask us for confirmation
 > before each step
@@ -284,7 +339,7 @@ $ rm -r thesis
 > rm: remove regular file ‘thesis/draft.txt’? y
 > rm: remove directory ‘thesis’? y
 > ~~~
-> {: .bash}
+> {: .language-bash}
 >
 > This removes everything in the directory, then the directory itself, asking
 > at each step for you to confirm the deletion.
@@ -297,7 +352,7 @@ rather than going into the `thesis` directory and running `nano` on `draft.txt` 
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 /Users/nelle/Desktop/data-shell
@@ -309,7 +364,7 @@ $ mkdir thesis
 $ nano thesis/draft.txt
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 draft.txt
@@ -323,9 +378,9 @@ which is short for "move":
 ~~~
 $ mv thesis/draft.txt thesis/quotes.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
-The first parameter tells `mv` what we're "moving",
+The first argument tells `mv` what we're "moving",
 while the second is where it's to go.
 In this case,
 we're moving `thesis/draft.txt` to `thesis/quotes.txt`,
@@ -336,7 +391,7 @@ Sure enough,
 ~~~
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 quotes.txt
@@ -348,12 +403,12 @@ silently overwrite any existing file with the same name, which could
 lead to data loss. An additional flag, `mv -i` (or `mv --interactive`),
 can be used to make `mv` ask you for confirmation before overwriting.
 
-Just for the sake of inconsistency,
-`mv` also works on directories --- there is no separate `mvdir` command.
+Just for the sake of consistency,
+`mv` also works on directories
 
 Let's move `quotes.txt` into the current working directory.
 We use `mv` once again,
-but this time we'll just use the name of a directory as the second parameter
+but this time we'll just use the name of a directory as the second argument
 to tell `mv` that we want to keep the filename,
 but put the file somewhere new.
 (This is why the command is called "move".)
@@ -363,7 +418,7 @@ the directory name we use is the special directory name `.` that we mentioned ea
 ~~~
 $ mv thesis/quotes.txt .
 ~~~
-{: .bash}
+{: .language-bash}
 
 The effect is to move the file from the directory it was in to the current working directory.
 `ls` now shows us that `thesis` is empty:
@@ -371,33 +426,64 @@ The effect is to move the file from the directory it was in to the current worki
 ~~~
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 Further,
-`ls` with a filename or directory name as a parameter only lists that file or directory.
+`ls` with a filename or directory name as an argument only lists that file or directory.
 We can use this to see that `quotes.txt` is still in our current directory:
 
 ~~~
 $ ls quotes.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 quotes.txt
 ~~~
 {: .output}
 
+> ## Moving to the Current Folder
+>
+> After running the following commands,
+> Jamie realizes that she put the files `sucrose.dat` and `maltose.dat` into the wrong folder:
+>
+> ~~~
+> $ ls -F
+>  analyzed/ raw/
+> $ ls -F analyzed
+> fructose.dat glucose.dat maltose.dat sucrose.dat
+> $ cd raw/
+> ~~~
+> {: .language-bash}
+>
+> Fill in the blanks to move these files to the current folder
+> (i.e., the one she is currently in):
+>
+> ~~~
+> $ mv ___/sucrose.dat  ___/maltose.dat ___
+> ~~~
+> {: .language-bash}
+> > ## Solution
+> > ```
+> > $ mv ../analyzed/sucrose.dat ../analyzed/maltose.dat .
+> > ```
+> > {: .language-bash}
+> > Recall that `..` refers to the parent directory (i.e. one above the current directory)
+> > and that `.` refers to the current directory.
+> {: .solution}
+{: .challenge}
+
 The `cp` command works very much like `mv`,
 except it copies a file instead of moving it.
 We can check that it did the right thing using `ls`
-with two paths as parameters --- like most Unix commands,
+with two paths as arguments --- like most Unix commands,
 `ls` can be given multiple paths at once:
 
 ~~~
 $ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 quotes.txt   thesis/quotations.txt
@@ -412,7 +498,7 @@ and then run that same `ls` again.
 $ rm quotes.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 ls: cannot access quotes.txt: No such file or directory
@@ -460,7 +546,6 @@ but it does find the copy in `thesis` that we didn't delete.
 > 3. `mv statstics.txt .`
 > 4. `cp statstics.txt .`
 >
-<!--
 > > ## Solution
 > > 1. No.  While this would create a file with the correct name, the incorrectly named file still exists in the directory
 > > and would need to be deleted.
@@ -470,7 +555,6 @@ but it does find the copy in `thesis` that we didn't delete.
 > > 4. No, the period(.) indicates where to copy the file, but does not provide a new file name; identical file names
 > > cannot be created.
 > {: .solution}
--->
 {: .challenge}
 
 > ## Moving and Copying
@@ -480,7 +564,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > ~~~
 > $ pwd
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > /Users/jamie/data
 > ~~~
@@ -488,25 +572,24 @@ but it does find the copy in `thesis` that we didn't delete.
 > ~~~
 > $ ls
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > proteins.dat
 > ~~~
 > {: .output}
 > ~~~
 > $ mkdir recombine
-> $ mv proteins.dat recombine
+> $ mv proteins.dat recombine/
 > $ cp recombine/proteins.dat ../proteins-saved.dat
 > $ ls
 > ~~~
-> {: .bash}
+> {: .language-bash}
 >
 > 1.   `proteins-saved.dat recombine`
 > 2.   `recombine`
 > 3.   `proteins.dat recombine`
 > 4.   `proteins-saved.dat`
 >
-<!--
 > > ## Solution
 > > We start in the `/Users/jamie/data` directory, and create a new folder called `recombine`.
 > > The second line moves (`mv`) the file `proteins.dat` to the new folder (`recombine`).
@@ -521,7 +604,150 @@ but it does find the copy in `thesis` that we didn't delete.
 > > 3. No, see explanation above.  `proteins.dat` is located at `/Users/jamie/data/recombine`
 > > 4. No, see explanation above.  `proteins-saved.dat` is located at `/Users/jamie`
 > {: .solution}
--->
+{: .challenge}
+
+> ## Copy with Multiple Filenames
+>
+> For this exercise, you can test the commands in the `data-shell/data` directory.
+>
+> In the example below, what does `cp` do when given several filenames and a directory name?
+>
+> ~~~
+> $ mkdir backup
+> $ cp amino-acids.txt animals.txt backup/
+> ~~~
+> {: .language-bash}
+>
+> In the example below, what does `cp` do when given three or more file names?
+>
+> ~~~
+> $ ls -F
+> ~~~
+> {: .language-bash}
+> ~~~
+> amino-acids.txt  animals.txt  backup/  elements/  morse.txt  pdb/  planets.txt  salmon.txt  sunspot.txt
+> ~~~
+> {: .output}
+> ~~~
+> $ cp amino-acids.txt animals.txt morse.txt 
+> ~~~
+> {: .language-bash}
+>
+> > ## Solution
+> > If given more than one file name followed by a directory name (i.e. the destination directory must 
+> > be the last argument), `cp` copies the files to the named directory.
+> >
+> > If given three file names, `cp` throws an error because it is expecting a directory
+> > name as the last argument.
+> >
+> > ```
+> > cp: target ‘morse.txt’ is not a directory
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+> ## Wildcards
+>
+> `*` is a **wildcard**. It matches zero or more
+> characters, so `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
+> file that ends with '.pdb'. On the other hand, `p*.pdb` only matches
+> `pentane.pdb` and `propane.pdb`, because the 'p' at the front only
+> matches filenames that begin with the letter 'p'.
+>
+> `?` is also a wildcard, but it only matches a single character. This
+> means that `p?.pdb` would match `pi.pdb` or `p5.pdb` (if we had these two
+> files in the `molecules` directory), but not `propane.pdb`.
+> We can use any number of wildcards at a time: for example, `p*.p?*`
+> matches anything that starts with a 'p' and ends with '.', 'p', and at
+> least one more character (since the `?` has to match one character, and
+> the final `*` can match any number of characters). Thus, `p*.p?*` would
+> match `preferred.practice`, and even `p.pi` (since the first `*` can
+> match no characters at all), but not `quality.practice` (doesn't start
+> with 'p') or `preferred.p` (there isn't at least one character after the
+> '.p').
+>
+> When the shell sees a wildcard, it expands the wildcard to create a
+> list of matching filenames *before* running the command that was
+> asked for. As an exception, if a wildcard expression does not match
+> any file, Bash will pass the expression as an argument to the command
+> as it is. For example typing `ls *.pdf` in the `molecules` directory
+> (which contains only files with names ending with `.pdb`) results in
+> an error message that there is no file called `*.pdf`.
+> However, generally commands like `wc` and `ls` see the lists of
+> file names matching these expressions, but not the wildcards
+> themselves. It is the shell, not the other programs, that deals with
+> expanding wildcards, and this is another example of orthogonal design.
+{: .callout}
+
+> ## Using Wildcards
+>
+> When run in the `molecules` directory, which `ls` command(s) will
+> produce this output?
+>
+> `ethane.pdb   methane.pdb`
+>
+> 1. `ls *t*ane.pdb`
+> 2. `ls *t?ne.*`
+> 3. `ls *t??ne.pdb`
+> 4. `ls ethane.*`
+>
+> > ## Solution
+>>  The solution is `3.`
+>>
+>> `1.` shows all files whose names contain zero or more characters (`*`) followed by the letter `t`, then zero or more characters (`*`) followed by `ane.pdb`. This gives `ethane.pdb  methane.pdb  octane.pdb  pentane.pdb`. 
+>>
+>> `2.` shows all files whose names start with zero or more characters (`*`) followed by the letter `t`, then a single character (`?`), then `ne.` followed by zero or more characters (`*`). This will give us `octane.pdb` and `pentane.pdb` but doesn't match anything which ends in `thane.pdb`.
+>>
+>> `3.` fixes the problems of option 2 by matching two characters (`??`) between `t` and `ne`. This is the solution.
+>>
+>> `4.` only shows files starting with `ethane.`.
+> {: .solution}
+{: .challenge}
+
+> ## More on Wildcards
+>
+> Sam has a directory containing calibration data, datasets, and descriptions of
+> the datasets:
+>
+> ~~~
+> 2015-10-23-calibration.txt
+> 2015-10-23-dataset1.txt
+> 2015-10-23-dataset2.txt
+> 2015-10-23-dataset_overview.txt
+> 2015-10-26-calibration.txt
+> 2015-10-26-dataset1.txt
+> 2015-10-26-dataset2.txt
+> 2015-10-26-dataset_overview.txt
+> 2015-11-23-calibration.txt
+> 2015-11-23-dataset1.txt
+> 2015-11-23-dataset2.txt
+> 2015-11-23-dataset_overview.txt
+> ~~~
+> {: .language-bash}
+>
+> Before heading off to another field trip, she wants to back up her data and
+> send some datasets to her colleague Bob. Sam uses the following commands
+> to get the job done:
+>
+> ~~~
+> $ cp *dataset* /backup/datasets
+> $ cp ____calibration____ /backup/calibration
+> $ cp 2015-____-____ ~/send_to_bob/all_november_files/
+> $ cp ____ ~/send_to_bob/all_datasets_created_on_a_23rd/
+> ~~~
+> {: .language-bash}
+>
+> Help Sam by filling in the blanks.
+>
+> > ## Solution
+> > ```
+> > $ cp *calibration.txt /backup/calibration
+> > $ cp 2015-11-* ~/send_to_bob/all_november_files/
+> > $ cp *-23-dataset* ~send_to_bob/all_datasets_created_on_a_23rd/
+> > ```
+> > {: .language-bash}
+> {: .solution}
 {: .challenge}
 
 > ## Organizing Directories and Files
@@ -532,7 +758,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > ~~~
 > $ ls -F
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > analyzed/  fructose.dat    raw/   sucrose.dat
 > ~~~
@@ -545,7 +771,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > ~~~
 > $ ls -F
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > analyzed/   raw/
 > ~~~
@@ -553,135 +779,68 @@ but it does find the copy in `thesis` that we didn't delete.
 > ~~~
 > $ ls analyzed
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > fructose.dat    sucrose.dat
 > ~~~
 > {: .output}
-{: .challenge}
-
-> ## Copy with Multiple Filenames
 >
-> What does `cp` do when given several filenames and a directory name, as in:
->
-> ~~~
-> $ mkdir backup
-> $ cp thesis/citations.txt thesis/quotations.txt backup
-> ~~~
-> {: .bash}
->
-> What does `cp` do when given three or more filenames, as in:
->
-> ~~~
-> $ ls -F
-> ~~~
-> {: .bash}
-> ~~~
-> intro.txt    methods.txt    survey.txt
-> ~~~
-> {: .output}
-> ~~~
-> $ cp intro.txt methods.txt survey.txt
-> ~~~
-> {: .bash}
-{: .challenge}
-
-> ## Listing Recursively and By Time
->
-> The command `ls -R` lists the contents of directories recursively,
-> i.e., lists their sub-directories, sub-sub-directories, and so on
-> in alphabetical order at each level.
-> The command `ls -t` lists things by time of last change,
-> with most recently changed files or directories first.
-> In what order does `ls -R -t` display things?
-{: .challenge}
-
-> ## Creating Files a Different Way
->
-> We have seen how to create text files using the `nano` editor.
-> Now, try the following command in your home directory:
->
-> ~~~
-> $ cd                  # go to your home directory
-> $ touch my_file.txt
-> ~~~
-> {: .bash}
->
-> 1.  What did the touch command do?
->     When you look at your home directory using the GUI file explorer,
->     does the file show up?
->
-> 2.  Use `ls -l` to inspect the file's.  How large is `my_file.txt`?
->
-> 3.  When might you want to create a file this way?
-{: .challenge}
-
-> ## Moving to the Current Folder
->
-> After running the following commands,
-> Jamie realizes that she put the files `sucrose.dat` and `maltose.dat` into the wrong folder:
->
-> ~~~
-> $ ls -F
-> raw/ analyzed/
-> $ ls -F analyzed
-> fructose.dat glucose.dat maltose.dat sucrose.dat
-> $ cd raw/
-> ~~~
-> {: .bash}
->
-> Fill in the blanks to move these files to the current folder
-> (i.e., the one she is currently in):
->
-> ~~~
-> $ mv ___/sucrose.dat  ___/maltose.dat ___
-> ~~~
-> {: .bash}
-{: .challenge}
-
-> ## Using `rm` Safely
->
-> What happens when we type `rm -i thesis/quotations.txt`?
-> Why would we want this protection when using `rm`?
->
-<!--
 > > ## Solution
-> >
-> > Ask for confirmation.
+> > ```
+> > mv *.dat analyzed
+> > ```
+> > {: .language-bash}
+> > Jamie needs to move her files `fructose.dat` and `sucrose.dat` to the `analyzed` directory.
+> > The shell will expand *.dat to match all .dat files in the current directory.
+> > The `mv` command then moves the list of .dat files to the "analyzed" directory.
 > {: .solution}
--->
 {: .challenge}
 
-> ## Copy a folder structure sans files
+> ## Copy a folder structure but not the files
 >
 > You're starting a new experiment, and would like to duplicate the file
 > structure from your previous experiment without the data files so you can
 > add new data.
 >
 > Assume that the file structure is in a folder called '2016-05-18-data',
-> which contains folders named 'raw' and 'processed' that contain data files.
-> The goal is to copy the file structure of the `2016-05-18-data` folder
-> into a folder called `2016-05-20-data` and remove the data files from
-> the directory you just created.
+> which contains a `data` folder that in turn contains folders named `raw` and
+> `processed` that contain data files.  The goal is to copy the file structure
+> of the `2016-05-18-data` folder into a folder called `2016-05-20-data` and
+> remove the data files from the directory you just created.
 >
 > Which of the following set of commands would achieve this objective?
 > What would the other commands do?
 >
 > ~~~
 > $ cp -r 2016-05-18-data/ 2016-05-20-data/
-> $ rm 2016-05-20-data/data/raw/*
-> $ rm 2016-05-20-data/data/processed/*
+> $ rm 2016-05-20-data/raw/*
+> $ rm 2016-05-20-data/processed/*
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
-> $ rm 2016-05-20-data/data/raw/*
-> $ rm 2016-05-20-data/data/processed/*
+> $ rm 2016-05-20-data/raw/*
+> $ rm 2016-05-20-data/processed/*
 > $ cp -r 2016-05-18-data/ 2016-5-20-data/
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > ~~~
 > $ cp -r 2016-05-18-data/ 2016-05-20-data/
 > $ rm -r -i 2016-05-20-data/
 > ~~~
-> {: .bash}
+> {: .language-bash}
+> >
+> > ## Solution
+> > The first set of commands achieves this objective.
+> > First we have a recursive copy of a data folder.
+> > Then two `rm` commands which remove all files in the specified directories.
+> > The shell expands the '*' wild card to match all files and subdirectories.
+> >
+> > The second set of commands have the wrong order: 
+> > attempting to delete files which haven't yet been copied,
+> > followed by the recursive copy command which would copy them.
+> >
+> > The third set of commands would achieve the objective, but in a time-consuming way:
+> > the first command copies the directory recursively, but the second command deletes
+> > interactively, prompting for confirmation for each file and directory.
+> {: .solution}
 {: .challenge}
