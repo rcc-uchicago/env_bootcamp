@@ -19,11 +19,10 @@
 ## Day 1: Basic concepts (2.5 hours)
 * Operating systems
 * Command line interface, file system, file types
-* Available on-campus computing resources
  
 ## Day 2&3: Programming basics (5 hours)
 * Compiled and interpreted languages
-* Analyzing simple climate data
+* Analyzing simple data using Python
 * Variables
 * Statements
 * Conditions
