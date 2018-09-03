@@ -1,7 +1,7 @@
 
 ## Date: Sep 4 - Sep 14
 ## Time: 9:00 - 11:30 am
-## Tentative Location: Searle 240A
+## Location: Searle 240A
 
 ## Tentative schedule:
 * Day 1. Basic concepts
