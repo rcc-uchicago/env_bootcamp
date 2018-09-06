@@ -5,6 +5,7 @@ To start a Jupyter notebook on Midway2, please do the following steps:
 4. On the terminal window, type `cd env_bootcamp/Day2-3`
      * I assume you have run `git clone https://github.com/rcc-uchicago/env_bootcamp.git` previously to 
   create `env_bootcamp` folder in your home directory
+     * Run the `git pull` command in the `Day2-3` folder
 5. On the terminal, type `sh /project2/env_bootcamp/scripts/run_ipython.sh`
      * after waiting for few seconds, you will see an address like 
   http://128.135.112.69:16664/?token=87cb97894e54269def89acfe40ea48aa6c1beef0af1b08cb Copy and paste it to your browser's
