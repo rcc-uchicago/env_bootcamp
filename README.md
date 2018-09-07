@@ -3,7 +3,7 @@
 ## Time: 9:00 - 11:30 am
 ## Location: Searle 240A
 
-## Tentative schedule:
+## Schedule:
 * Day 1. Basic concepts
 * Day 2. Python (part 1)
 * Day 3. Python (part 2)
