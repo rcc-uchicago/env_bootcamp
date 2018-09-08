@@ -15,7 +15,7 @@
 * Day 9. Computing at scale
 
 ## Slack Channel
-We will use Slack for participants to share comments, questions and code. 
+We will use Slack for participants to share comments, questions and snippets of code. 
 To join the uchicago_envbootcamp slack channel:  
 use the invitation link below: 
 [uchicago-envbootcamp.slack.com invitation](
