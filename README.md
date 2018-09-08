@@ -16,8 +16,7 @@
 
 ## Slack Channel
 We will use Slack for participants to share comments, questions and snippets of code. 
-To join the uchicago_envbootcamp slack channel:  
-use the invitation link below: 
+To join the uchicago_envbootcamp slack channel use the invitation link below: 
 [uchicago-envbootcamp.slack.com invitation](
 https://join.slack.com/t/uchicago-envbootcamp/shared_invite/enQtNDMxNzY4NDY5NzgxLTY3ZTFjMmE3ZjExOTljZmE3NWI3ODFkZDg1M2IwMzQyYTE3MDVhZTQ5M2RkNTM4MmQ0YTM4Y2FmOWQ5ZmYxNTQ)
 
