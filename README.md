@@ -11,8 +11,8 @@
 * Day 5. Numerical simulation analysis (part 2)
 * Day 6. Data files, stats and plotting
 * Day 7. Spatial data analysis
-* Day 8. Code repository
-* Day 9. Computing at scale
+* Day 8. Code repository (*time may change*)
+* Day 9. Computing at scale (*time may change*)
 
 ## Slack Channel
 We will use Slack for participants to share comments, questions and snippets of code. 
@@ -51,12 +51,13 @@ https://join.slack.com/t/uchicago-envbootcamp/shared_invite/enQtNDMxNzY4NDY5Nzgx
 * Color-coded maps
 * Creating movies
 
-## Day 8: Code repository (2.5 hours)
-* Basic concepts
-* Creating git repository and committing the code
-* Sharing the code using git
+## Day 8: Code repository (2 hours)
 
-## Day 9: Computing at scale (2.5 hours)
+* Basic concepts.
+* Creating git repository and committing the code.
+* Sharing the code using git.
+
+## Day 9: Computing at scale (2 hours)
 * Basics of HPC
 * Compiling the code with optimization
 * Submitting the job
