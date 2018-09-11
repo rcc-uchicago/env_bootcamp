@@ -12,6 +12,7 @@ how to use the scipy equivalent function.
 * Integration
 * Matrix Diagonalization
 * Fitting and Optimization
+
 **Topics with materials but not covered**
 * FFT
 * Differential Equations
