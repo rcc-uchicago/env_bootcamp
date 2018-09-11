@@ -40,4 +40,4 @@ notebook server launch script from your terminal:
 Paste the URL with token that is displayed in the terminal into your web browser to 
 connect to the notebook server.
 
-Once in the folders view of your notebook server, click on the main.ipynb notebook to launch it. 
+Once in the folders view of your notebook server, click on the main.ipynb notebook to open it. 
