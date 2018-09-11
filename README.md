@@ -3,7 +3,7 @@
 ## Time: 9:00 - 11:30 am
 ## Location: Searle 240A
 
-## Tentative schedule:
+## Schedule:
 * Day 1. Basic concepts
 * Day 2. Python (part 1)
 * Day 3. Python (part 2)
@@ -11,10 +11,14 @@
 * Day 5. Numerical simulation analysis (part 2)
 * Day 6. Data files, stats and plotting
 * Day 7. Spatial data analysis
-* Day 8. Code repository
-* Day 9. Computing at scale
+* Day 8. Code repository (*time may change*)
+* Day 9. Computing at scale (*time may change*)
 
-
+## Slack Channel
+We will use Slack for participants to share comments, questions and snippets of code. 
+To join the uchicago_envbootcamp slack channel use the invitation link: 
+[uchicago-envbootcamp.slack.com invitation](
+https://join.slack.com/t/uchicago-envbootcamp/shared_invite/enQtNDMxNzY4NDY5NzgxLTY3ZTFjMmE3ZjExOTljZmE3NWI3ODFkZDg1M2IwMzQyYTE3MDVhZTQ5M2RkNTM4MmQ0YTM4Y2FmOWQ5ZmYxNTQ)
 
 ## Day 1: Basic concepts (2.5 hours)
 * Operating systems
@@ -47,12 +51,13 @@
 * Color-coded maps
 * Creating movies
 
-## Day 8: Code repository (2.5 hours)
-* Basic concepts
-* Creating git repository and committing the code
-* Sharing the code using git
+## Day 8: Code repository (2 hours)
 
-## Day 9: Computing at scale (2.5 hours)
+* Basic concepts.
+* Creating git repository and committing the code.
+* Sharing the code using git.
+
+## Day 9: Computing at scale (2 hours)
 * Basics of HPC
 * Compiling the code with optimization
 * Submitting the job
