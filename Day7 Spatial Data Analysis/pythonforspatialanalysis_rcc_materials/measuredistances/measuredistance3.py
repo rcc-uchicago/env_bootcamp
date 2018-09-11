@@ -10,4 +10,4 @@ y2_rad = math.radians(y2)
 a = math.sin(y_dist/2)**2 + math.sin(x_dist/2)**2 * math.cos(y1_rad) * math.cos(y2_rad)
 c = 2 * math.asin(math.sqrt(a))
 distance = c * 6371 #kilometers
-print distance
+print (distance)

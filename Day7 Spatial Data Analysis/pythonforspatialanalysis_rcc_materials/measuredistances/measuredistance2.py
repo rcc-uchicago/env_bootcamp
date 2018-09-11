@@ -7,5 +7,4 @@ x_dist = x1 - x2
 y_dist = y1 - y2
 dist_sq = x_dist**2 + y_dist**2
 distance = (math.sqrt(dist_sq))/1000
-print distance
-
+print (distance)
