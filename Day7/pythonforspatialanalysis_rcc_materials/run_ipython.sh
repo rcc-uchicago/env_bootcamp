@@ -16,4 +16,7 @@ echo "Please wait ..."
 
 module load $module
 
+# pip install --user arcgis
+# pip install --user pysal
+
 jupyter-notebook --no-browser --ip=$ip --port=$port --log-level='ERROR'

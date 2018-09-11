@@ -1,0 +1,8 @@
+for f in layer.getFeatures():
+  print f['name'], f['iata_code']
+
+
+
+for f in layer.getFeatures():
+  geom = f.geometry()
+  print geom.asPoint()
