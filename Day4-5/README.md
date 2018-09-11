@@ -3,7 +3,19 @@ We will first begin by reviewing the use of functions in python, followed by
 a rewview of commonly used features and operations in the numpy and matplotlib packages. 
 Then several (time permitting) numerical methods from the following list will be covered, 
 where for each method we implement a function for the methodology and then demonstrate
-how to use the scipy equivalent function. 
+how to use the scipy equivalent function.
+
+### Numerical Method topics: 
+* Root finding
+* Systems of equations
+* Interpolation
+* Integration
+* Matrix Diagonalization
+* Fitting and Optimization
+**Topics with materials but not covered**
+* FFT
+* Differential Equations
+* Machine Learning
 
 ## Contents
 This folder contains the following items with descriptions: 
