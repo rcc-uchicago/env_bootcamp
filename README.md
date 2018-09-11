@@ -11,8 +11,8 @@
 * Day 5. Numerical simulation analysis (part 2)
 * Day 6. Data files, stats and plotting
 * Day 7. Spatial data analysis
-* Day 8. Code repository (*time may change*)
-* Day 9. Computing at scale (*time may change*)
+* Day 8. Code repository (10:00a - 12:00p)
+* Day 9. Computing at scale (10:00a - 12:00p)
 
 ## Slack Channel
 We will use Slack for participants to share comments, questions and snippets of code. 
