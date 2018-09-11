@@ -29,7 +29,7 @@ This folder contains the following items with descriptions:
 * Numerical_Methods --  folder containing notebooks and subfolders of the numerical
                         methods covered. 
 
-## Instructions for starting materials
+## Instructions for using the materials
 
 You should have cloned this git repo on the midway compute cluster. If you have not
 first log into midway and clone this repo in your home folder. Then run the ipython
