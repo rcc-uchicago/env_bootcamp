@@ -5,7 +5,7 @@ Then several (time permitting) numerical methods from the following list will be
 where for each method we implement a function for the methodology and then demonstrate
 how to use the scipy equivalent function.
 
-### Numerical Method topics: 
+### Numerical Methods topics: 
 * Root finding
 * Systems of equations
 * Interpolation
