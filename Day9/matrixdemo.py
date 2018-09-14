@@ -11,8 +11,8 @@ if len (sys.argv) == 3:
    n = int(sys.argv[1])
    p = int(sys.argv[2])
 else:
-   n = 1000
-   p = 10000
+   n = 8000
+   p = 12000
 
 # CREATE DATA
 # -----------
