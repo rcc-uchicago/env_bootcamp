@@ -6,14 +6,13 @@ import sys
 import time
 import numpy
 
-# Set matrix dimensions
-# if len (sys.argv) == 3:
-#    mat_size = int(sys.argv[1])
-# else:
-#    mat_size = 10
-
-n = 6000
-p = 4000
+# Set the matrix dimensions.
+if len (sys.argv) == 3:
+   n = int(sys.argv[1])
+   p = int(sys.argv[2])
+else:
+   n = 1000
+   p = 10000
 
 # CREATE DATA
 # -----------
