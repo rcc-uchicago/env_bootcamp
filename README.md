@@ -59,5 +59,4 @@ https://join.slack.com/t/uchicago-envbootcamp/shared_invite/enQtNDMxNzY4NDY5Nzgx
 
 ## Day 9: Computing at scale (2 hours)
 * Basics of HPC
-* Compiling the code with optimization
-* Submitting the job
+* Submitting a job
