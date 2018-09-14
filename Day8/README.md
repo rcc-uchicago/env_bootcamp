@@ -16,6 +16,6 @@ instructions [here][swc-git-setup] to set up an account.
 
 ## Notes
 
-+ See [here][google-doc] for the instructor notes.
+See [here][google-doc] for the instructor notes.
 
 [google-doc]: https://docs.google.com/document/d/1dBaPEcwr866YJXW4vO6udKWgAV4-N7YlNJKAhASOif0
