@@ -5,6 +5,7 @@
 
 #SBATCH --partition=broadwl
 #SBATCH --time=00:10:00
+#SBATCH --cpus-per-task=1
 
 # For reproducibility, add version number to "module load" call.
 module load Anaconda3/5.1.0
