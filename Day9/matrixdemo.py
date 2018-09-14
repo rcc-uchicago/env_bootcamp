@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-# TO DO: Explain here what this script does, and how to use it.
-# Motivation: compute p x p covariance matrix.
+# We use this short Python script to explore the computation involved
+# in an operation (multiplication) on a large matrix; this sort of
+# computation would be needed, for example, to estimate the p x p
+# covariance matrix for a large number of variables (p).
 import sys
 import time
 import numpy
