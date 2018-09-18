@@ -1,4 +1,5 @@
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/rcc-uchicago/env_bootcamp/master?urlpath=lab)
 # Environmental Sciences Computational Bootcamp
 
 ## Date: Sep 4 - Sep 14
