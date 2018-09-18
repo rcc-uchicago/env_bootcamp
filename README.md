@@ -1,5 +1,5 @@
 
-# Environmental Sciences Computing Bootcamp
+# Environmental Sciences Computational Bootcamp
 
 ## Date: Sep 4 - Sep 14
 ## Time: 9:00 - 11:30 am
